@@ -1,6 +1,6 @@
 # MAUI Radial Gauge Getting Started
 
-This repository contains sample for how to get started with the [Syncfusion .NET MAUI Radial Gauge](https://help.syncfusion.com/maui/radial-gauge/getting-started) control. The .NET MAUI Radial Gauge is a multi-purpose data visualization control, that displays numerical values on a circular scale. It has a rich set of features such as axes, ranges, pointers, and annotations that are fully customizable and extendable.
+This repository contains sample to get started with the [Syncfusion .NET MAUI Radial Gauge](https://help.syncfusion.com/maui/radial-gauge/getting-started) control. The .NET MAUI Radial Gauge is a multi-purpose data visualization control, that displays numerical values on a circular scale. It has a rich set of features such as axes, ranges, pointers, and annotations that are fully customizable and extendable.
 
 ## Syncfusion controls
 
