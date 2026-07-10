@@ -63,7 +63,7 @@ using Syncfusion.Maui.Gauges;
 
 ### Step 5: Initialize the Radial Gauge
 
-Initialize the [SfRadialGauge]() and configure axes, ranges, and pointers to display your data.
+Initialize the [SfRadialGauge](https://www.syncfusion.com/maui-controls/maui-radial-gauge) and configure axes, ranges, and pointers to display your data.
 
 **[XAML]**
 ```xaml
@@ -77,30 +77,30 @@ Initialize the [SfRadialGauge]() and configure axes, ranges, and pointers to dis
         <gauge:SfRadialGauge>
             <gauge:SfRadialGauge.Axes>
                 <gauge:RadialAxis Interval="10"
-                          Maximum="150" >
+								  Maximum="150" >
                     <gauge:RadialAxis.Ranges>
                         <gauge:RadialRange StartValue="0"
-                                  EndValue="50"
-                                  Fill="Red" />
+										   EndValue="50"
+										   Fill="Red" />
                         <gauge:RadialRange StartValue="50"
-                                  EndValue="100"
-                                  Fill="Orange" />
+										   EndValue="100"
+										   Fill="Orange" />
                         <gauge:RadialRange StartValue="100"
-                                  EndValue="150"
-                                  Fill="Green" />
+										   EndValue="150"
+										   Fill="Green" />
                     </gauge:RadialAxis.Ranges>
                     <gauge:RadialAxis.Pointers>
                         <gauge:NeedlePointer Value="90" />
                     </gauge:RadialAxis.Pointers>
                     <gauge:RadialAxis.Annotations>
                         <gauge:GaugeAnnotation x:Name="annotation"
-                                       DirectionUnit="Angle"
-                                       DirectionValue="90"
-                                       PositionFactor="0.5">
+											   DirectionUnit="Angle"
+											   DirectionValue="90"
+											   PositionFactor="0.5">
                             <gauge:GaugeAnnotation.Content>
                                 <Label Text="90"
-                                   FontSize="25"
-                                   FontAttributes="Bold" 
+									   FontSize="25"
+									   FontAttributes="Bold" 
                                        TextColor="Black"/>
                             </gauge:GaugeAnnotation.Content>
                         </gauge:GaugeAnnotation>
