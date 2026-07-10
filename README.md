@@ -1,52 +1,118 @@
-# MAUI Radial Gauge Getting Started
+# Getting Started with .NET MAUI Radial Gauge
 
-This repository contains sample to get started with the [Syncfusion .NET MAUI Radial Gauge](https://help.syncfusion.com/maui/radial-gauge/getting-started) control. The .NET MAUI Radial Gauge is a multi-purpose data visualization control, that displays numerical values on a circular scale. It has a rich set of features such as axes, ranges, pointers, and annotations that are fully customizable and extendable.
+## Creating an application using the .NET MAUI Radial Gauge
 
-## Syncfusion controls
+The [.NET MAUI Radial Gauge](https://www.syncfusion.com/maui-controls/maui-radial-gauge?utm_source=github&utm_medium=listing&utm_campaign=maui-radial-gauge-github-samples) is a multi-purpose data visualization control that displays numerical values on a circular scale with customizable axes, ranges, pointers, and annotations. This guide will help you integrate the Radial Gauge control into your .NET MAUI application.
 
-This project used the following Syncfusion control(s):
-* [SfRadialGauge](https://www.syncfusion.com/maui-controls/maui-radial-gauge)
+### Step 1: Create a new .NET MAUI application in Visual Studio
 
-## Supported platforms
+1. Go to **File > New > Project** and choose the **.NET MAUI App** template.
+2. Name the project and choose a location. Click **Next**.
+3. Select the .NET framework version and click **Create**.
 
-.NET Multi-platform App UI (.NET MAUI) apps can be written for the following platforms:
+### Step 2: Install the Syncfusion .NET MAUI Gauges NuGet package
 
-* Android 5.0 (API 21) or higher.
-* iOS 10 or higher.
-* macOS 10.13 or higher, using Mac Catalyst.
-* Windows 11 and Windows 10 version 1809 or higher, using [Windows UI Library (WinUI) 3](https://learn.microsoft.com/en-us/windows/apps/winui/winui3/).
+1. In **Solution Explorer**, right-click the project and choose **Manage NuGet Packages**.
+2. Search for Syncfusion.Maui.Gauges and install the latest version.
+3. Ensure the necessary dependencies are installed correctly, and the project is restored.
 
-## Requirements to run the sample
+### Step 3: Register the Syncfusion handler
 
-* [Visual Studio 2022 Preview](https://learn.microsoft.com/en-us/visualstudio/releases/2022/release-notes-preview) version 17.3.4 or higher (.NET MAUI version 6.0.486) or [Visual Studio 2022 for Mac 17.4 Preview](https://visualstudio.microsoft.com/vs/mac/preview/).
-* .NET 6.0
+Syncfusion.Maui.Core NuGet is a dependent package for all Syncfusion controls of .NET MAUI. In the MauiProgram.cs file, register the handler for Syncfusion core.
 
-Refer to the following link for more details: [System Requirements](https://help.syncfusion.com/maui/system-requirements)
+**[C#]**
+```csharp
+using Microsoft.Maui;
+using Microsoft.Maui.Hosting;
+using Syncfusion.Maui.Core.Hosting;
 
-## How to run the sample
+namespace RadialGaugeGettingStarted
+{
+    public static class MauiProgram
+    {
+        public static MauiApp CreateMauiApp()
+        {
+            var builder = MauiApp.CreateBuilder();
+            builder
+                .UseMauiApp<App>()
+                .ConfigureSyncfusionCore()
+                .ConfigureFonts(fonts =>
+                {
+                    fonts.AddFont("OpenSans-Regular.ttf", "OpenSansRegular");
+                });
 
-1. Clone the sample and open it in Visual Studio 2022 Preview.
+            return builder.Build();
+        }
+    }
+}
+```
 
-   *Note: If you download the sample using the "Download ZIP" option, right-click it, select Properties, and then select Unblock.*
+### Step 4: Add the Radial Gauge namespace
 
-2. Register your license key in the App.cs file as demonstrated in the following code.
+Import the Gauge namespace to your XAML or C# code.
 
-		public App()
-		{
-			//Register Syncfusion license
-			Syncfusion.Licensing.SyncfusionLicenseProvider.RegisterLicense("YOUR LICENSE KEY");
-		
-			InitializeComponent();
-		
-			MainPage = new MainPage();
-		}
-		
-	Refer to this [link](https://help.syncfusion.com/maui/licensing/overview) for more details.
-	
-3. Clean and build the application.
+**[XAML]**
+```xaml
+xmlns:gauge="clr-namespace:Syncfusion.Maui.Gauges;assembly=Syncfusion.Maui.Gauges"
+```
 
-4. Run the application.
+**[C#]**
+```csharp
+using Syncfusion.Maui.Gauges;
+```
 
-## License
+### Step 5: Initialize the Radial Gauge
 
-Syncfusion has no liability for any damage or consequence that may arise by using or viewing the samples. The samples are for demonstrative purposes, and if you choose to use or access the samples, you agree to not hold Syncfusion liable, in any form, for any damage that is related to use, for accessing, or viewing the samples. By accessing, viewing, or seeing the samples, you acknowledge and agree Syncfusion’s samples will not allow you seek injunctive relief in any form for any claim related to the sample. If you do not agree to this, do not view, access, utilize, or otherwise do anything with Syncfusion’s samples.
+Initialize the [SfRadialGauge]() and configure axes, ranges, and pointers to display your data.
+
+**[XAML]**
+```xaml
+<ContentPage   
+    xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+    xmlns:gauge="clr-namespace:Syncfusion.Maui.Gauges;assembly=Syncfusion.Maui.Gauges"
+    x:Class="RadialGaugeGettingStarted.MainPage">
+
+    <Grid>
+        <gauge:SfRadialGauge>
+            <gauge:SfRadialGauge.Axes>
+                <gauge:RadialAxis Minimum="0" Maximum="100">
+                    <gauge:RadialAxis.Pointers>
+                        <gauge:NeedlePointer Value="75" />
+                    </gauge:RadialAxis.Pointers>
+                </gauge:RadialAxis>
+            </gauge:SfRadialGauge.Axes>
+        </gauge:SfRadialGauge>
+    </Grid>
+</ContentPage>
+```
+
+**[C#]**
+```csharp
+using Syncfusion.Maui.Gauges;
+. . .
+
+public partial class MainPage : ContentPage
+{
+    public MainPage()
+    {
+        this.InitializeComponent();
+        
+        SfRadialGauge radialGauge = new SfRadialGauge();
+        
+        RadialAxis axis = new RadialAxis();
+        axis.Minimum = 0;
+        axis.Maximum = 100;
+        
+        NeedlePointer pointer = new NeedlePointer();
+        pointer.Value = 75;
+        
+        axis.Pointers.Add(pointer);
+        radialGauge.Axes.Add(axis);
+
+        this.Content = radialGauge;
+    }
+}
+```
+
+![Getting started](MAUI-RadialGauge.png)
