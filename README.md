@@ -76,10 +76,35 @@ Initialize the [SfRadialGauge]() and configure axes, ranges, and pointers to dis
     <Grid>
         <gauge:SfRadialGauge>
             <gauge:SfRadialGauge.Axes>
-                <gauge:RadialAxis Minimum="0" Maximum="100">
+                <gauge:RadialAxis Interval="10"
+                          Maximum="150" >
+                    <gauge:RadialAxis.Ranges>
+                        <gauge:RadialRange StartValue="0"
+                                  EndValue="50"
+                                  Fill="Red" />
+                        <gauge:RadialRange StartValue="50"
+                                  EndValue="100"
+                                  Fill="Orange" />
+                        <gauge:RadialRange StartValue="100"
+                                  EndValue="150"
+                                  Fill="Green" />
+                    </gauge:RadialAxis.Ranges>
                     <gauge:RadialAxis.Pointers>
-                        <gauge:NeedlePointer Value="75" />
+                        <gauge:NeedlePointer Value="90" />
                     </gauge:RadialAxis.Pointers>
+                    <gauge:RadialAxis.Annotations>
+                        <gauge:GaugeAnnotation x:Name="annotation"
+                                       DirectionUnit="Angle"
+                                       DirectionValue="90"
+                                       PositionFactor="0.5">
+                            <gauge:GaugeAnnotation.Content>
+                                <Label Text="90"
+                                   FontSize="25"
+                                   FontAttributes="Bold" 
+                                       TextColor="Black"/>
+                            </gauge:GaugeAnnotation.Content>
+                        </gauge:GaugeAnnotation>
+                    </gauge:RadialAxis.Annotations>
                 </gauge:RadialAxis>
             </gauge:SfRadialGauge.Axes>
         </gauge:SfRadialGauge>
@@ -100,15 +125,59 @@ public partial class MainPage : ContentPage
         
         SfRadialGauge radialGauge = new SfRadialGauge();
         
-        RadialAxis axis = new RadialAxis();
-        axis.Minimum = 0;
-        axis.Maximum = 100;
-        
-        NeedlePointer pointer = new NeedlePointer();
-        pointer.Value = 75;
-        
-        axis.Pointers.Add(pointer);
-        radialGauge.Axes.Add(axis);
+		var axis = new RadialAxis
+		{
+			Interval = 10,
+			Maximum = 150
+		};
+
+		// Ranges
+		axis.Ranges.Add(new RadialRange
+		{
+			StartValue = 0,
+			EndValue = 50,
+			Fill = Colors.Red
+		});
+
+		axis.Ranges.Add(new RadialRange
+		{
+			StartValue = 50,
+			EndValue = 100,
+			Fill = Colors.Orange
+		});
+
+		axis.Ranges.Add(new RadialRange
+		{
+			StartValue = 100,
+			EndValue = 150,
+			Fill = Colors.Green
+		});
+
+		// Needle Pointer
+		axis.Pointers.Add(new NeedlePointer
+		{
+			Value = 90
+		});
+
+		// Annotation
+		var annotation = new GaugeAnnotation
+		{
+			DirectionUnit = AnnotationDirection.Angle,
+			DirectionValue = 90,
+			PositionFactor = 0.5,
+			Content = new Label
+			{
+				Text = "90",
+				FontSize = 25,
+				FontAttributes = FontAttributes.Bold,
+				TextColor = Colors.Black
+			}
+		};
+
+		axis.Annotations.Add(annotation);
+
+		// Add axis to gauge
+		radialGauge.Axes.Add(axis);
 
         this.Content = radialGauge;
     }
